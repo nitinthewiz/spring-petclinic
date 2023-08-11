@@ -9,7 +9,8 @@
 8. Got a successful run of "./mvnw package"
 9. Added Jenkinsfile and pushed to repo, created a pipeline job in Jenkins and pointed to the repo's Jenkinsfile
 10. Realized Jenkins needs a Maven install and it needs to be called M3 (based on what's in the Jenkinsfile)
-
+11. Maven M3 is not a necessary item, removed.
+12. Jenkinsfile points to the main branch of the repo.
 
 
 
