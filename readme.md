@@ -1,3 +1,16 @@
+# Notes on discovery
+1. Deployed local Jenkins on docker - jenkins/jenkins:lts-jdk11
+2. Added a freestyle project called "petclinique" and pointed it to the petclinic repo - [https://github.com/nitinthewiz/spring-petclinic](https://github.com/nitinthewiz/spring-petclinic)
+3. Tried to run a few times. Discovered how to run maven on Jenkins.
+4. Discovered that some dependencies are missing from the repositories mentioned in the pom.xml file
+5. Added jcenter as a repository to pom.xml
+6. Discovered that pom.xml specifies minimum Java version as 17, while jenkins LTS is Java 11.
+7. Changed Jenkins docker container to use Java 17
+8. Got a successful run of "./mvnw package"
+
+
+
+
 # Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/spring-projects/spring-petclinic) [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=7517918)
