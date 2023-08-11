@@ -7,6 +7,8 @@
 6. Discovered that pom.xml specifies minimum Java version as 17, while jenkins LTS is Java 11.
 7. Changed Jenkins docker container to use Java 17
 8. Got a successful run of "./mvnw package"
+9. Added Jenkinsfile and pushed to repo, created a pipeline job in Jenkins and pointed to the repo's Jenkinsfile
+10. Realized Jenkins needs a Maven install and it needs to be called M3 (based on what's in the Jenkinsfile)
 
 
 
