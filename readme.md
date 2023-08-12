@@ -11,7 +11,9 @@
 10. Realized Jenkins needs a Maven install and it needs to be called M3 (based on what's in the Jenkinsfile)
 11. Maven M3 is not a necessary item, removed.
 12. Jenkinsfile points to the main branch of the repo.
-
+13. Added Dockerfile, testing it
+14. While testing dockerfile, realized Jenkins container doesn't have docker
+15. Tried installing docker on the jenkins container. Ended up wiping the entire jenkins install
 
 
 # Spring PetClinic Sample Application [![Build Status](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg)](https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml)

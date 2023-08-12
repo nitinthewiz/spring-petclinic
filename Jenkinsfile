@@ -5,7 +5,7 @@ pipeline {
         jfrog 'jfrog-cli'
     }
     environment {
-        DOCKER_IMAGE_NAME = "nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.0"
+        DOCKER_IMAGE_NAME = "nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.1"
     }
 
     stages {
