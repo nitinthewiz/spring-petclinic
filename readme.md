@@ -5,25 +5,26 @@ This repo brings the Spring PetClinic sample application to Jenkins CI/CD. We us
 
 ## Changes from base repo
 The following files have changed from the base spring-petclinic repo - 
-1. Jenkinsfile - A Jenkinsfile automates the task of creating a Jenkins pipeline. We can list out all the steps that we need to perform in Jenkins and expect the existing Jenkins infrastructure to implement the pipeline. It does assume that the required plugins and credentials are already setup in Jenkins.
-2. Dockerfile - The original repo has a spring-boot based mechanism to create a Docker image using this software. However, this Dockerfile adds the ability to create a docker image using Jenkins and also gives us a chance to make changes to the final Docker image before it is deployed.
-3. pom.xml - Some dependencies are not available in the repositories listed in the original pom file. Adding JCenter lets us install these missing dependencies.
-4. readme.md - This file. It contains information about this endeavor, details about changes, and a running commentary on my discovery process as I went about completing this work.
+1. Jenkinsfile - A Jenkinsfile automates the task of creating a Jenkins pipeline. We can specify all the steps of the pipeline that we need to perform in Jenkins and expect the existing Jenkins infrastructure to implement the pipeline. It does assume that the required plugins and credentials are already setup in Jenkins. (Detailed below.)
+2. Dockerfile - The original repo has spring-boot based tooling to create a Docker image. However, this Dockerfile adds the ability to create a customizable docker image programmatically via Jenkins (or manually).
+3. pom.xml - Some dependencies are not available in the repositories listed in the original pom file. Adding the JCenter repository lets us install these missing dependencies.
+4. readme.md - This file itself. It contains information about this endeavor, details about changes, and a running commentary on my discovery process as I went about completing this work.
 
 ## Relevant links to files
 Jenkinsfile - https://github.com/nitinthewiz/spring-petclinic/blob/main/Jenkinsfile \
 Dockerfile - https://github.com/nitinthewiz/spring-petclinic/blob/main/Dockerfile \
 Readme - https://github.com/nitinthewiz/spring-petclinic/blob/main/readme.md \
-Artifactory - https://nitin4jfrog.jfrog.io/
+Artifactory - https://nitin4jfrog.jfrog.io/ \
+Uploaded docker image - nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.1
 
 ## How to run the project
-1. First, setup Artifactory. Either locally or online. With the online version, you get excellent instructions to create a repository for docker images and connect it to CI/CD platforms like Jenkins. When you get to the instructions for Jenkins, move to the next step.
-2. Second, setup Jenkins. Make sure this installation of Jenkins has access to a docker installation to run docker CLI to build and create containers.
+1. First, setup Artifactory. Either locally or online. With the online version, you get excellent instructions to create a repository for docker images and connect it to CI/CD platforms like Jenkins. When you get to the instructions for setting up Artifactory with Jenkins, move to the next step.
+2. Second, setup Jenkins. Make sure this installation of Jenkins has access to a docker executable and can run docker CLI to build and deploy containers.
 3. Next, install the required plugins - you will need the Docker Pipeline plugin and the JFrog plugin.
-4. Once the plugins are installed, follow the instructions on Artifactory to setup the JFrog plugin, including credentials, configuration, and installing the JFrog CLI.
+4. Once the plugins are installed, follow the instructions on Artifactory (from Step 1) to setup the JFrog plugin, including credentials, configuration, and installing the JFrog CLI on Jenkins.
 5. Now, you're ready to create a "New Item" in Jenkins. Head to the dashboard and click on "New Item". Pick a name for this task and select the Pipeline type.
 6. On the configuration page, select GitHub Project and set the URL to this repo (https://github.com/nitinthewiz/spring-petclinic/). Then, under Pipeline, select "Pipeline script from SCM", select Git, and set the repo URL to this same repo. Also, change the branch from "\*/master" to "\*/main". Hit Save.
-7. Now, your project is ready to be built.
+7. Finally, your project is ready to be built.
 8. Hit "Build Now" and watch as the repo is checked out, the tools are installed and the build, test, and deploy stages (build, scan, push docker image; publish build info) are executed.
 9. Once the build completes successfully, head to your artifactory page (mine is [this](https://nitin4jfrog.jfrog.io/)) and check out - 
     - Packages, which contain the versioned docker images along with docker pull instructions
@@ -32,7 +33,7 @@ Artifactory - https://nitin4jfrog.jfrog.io/
 10. Now, you can pull down the docker image and deploy it, as shown in the next section.
 
 ## How to run the docker image
-1. Once the docker image shows up on Artifactory, you can pull it down using docker or a variety of other container installation and management tools (such as portainer, podman, podman desktop, Rancher Desktop).
+1. Once the docker image shows up on Artifactory, you can pull it down using docker or a variety of other container installation and management tools (such as portainer, podman, podman desktop, Rancher Desktop, etc).
 2. The Packages section will show the docker images with versions. Click through a version to see Docker layers, Xray information, and a docker pull command.
 3. You can pull the current latest docker image for this application using the following command - \
     `docker pull nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.1`
