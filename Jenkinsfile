@@ -8,7 +8,7 @@ pipeline {
     environment {
         // Specify the docker image name. Change the tag here for changes that need to
         // be reflected on Artifactory.
-        DOCKER_IMAGE_NAME = "nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.2"
+        DOCKER_IMAGE_NAME = "nitin4jfrog.jfrog.io/docker-local/spring-petclinic:1.0.3"
     }
 
     stages {
